@@ -1,0 +1,51 @@
+# ========== general
+# if running on DLaas, set DEVICE to DLaaS
+# if running on flinders, set DEVICE to a GPU id
+#DEVICE: "3"
+DEVICE: "DLaaS"
+
+# ========== data
+# LIMIT_N: a number or False
+# Y: either VFI or MD
+PATH_PREFIX: ''
+IMG_PATH: '/data/eye/derived/media/nyu_vft_cubes_small/'
+Y: 'vfi'
+DX: False
+ROI: 'onh'
+LIMIT_N: False
+STRATIFY: False
+
+# ========== training
+N_FOLDS: 1
+N_EPOCHS: 100
+BATCH_SIZE: 8
+DATASET: vft_ss6.csv
+
+# optimizer, learning rate and algorithm
+# 0: RMSprop 1: Adam  2: Nadam 3: SGD
+ALGO: 2
+LR: 4
+
+# =========== prediction
+PREDICT: False
+WEIGHTS_STEM: 'weights/training-37kaplDWR/best_weights_solo_onh_bayes'
+
+# ========== network
+TYPE: 'solo_bayes'
+C: 64
+H: 128
+W: 64
+N_FILTER: [64, 64, 64, 64, 64, 64, 64, 64]
+N_CONV: [ 7,  5,  5,  3, 3, 3, 3, 3]
+N_STRIDE: [ 2,  1,  1,  1, 1, 1, 1, 1]
+FC: [64, 32]
+ALEATROPIC_WEIGHT: 1.0
+
+# ========== regularization
+DROPOUT: 0.2
+REG: 0.00
+BN: True    # batch norm
+DECORRELATION: 0.0
+
+# ========== output
+OUTSTEM: DEFAULT

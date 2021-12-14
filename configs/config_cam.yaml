@@ -1,0 +1,58 @@
+# ========== general
+# if running on DLaas, set DEVICE to DLaaS
+# if running on flinders, set DEVICE to a GPU id
+#DEVICE: "3"
+DEVICE: "DLaaS"
+
+# ========== data
+# LIMIT_N: a number or False
+
+# CAM can be generated for the same dataset used for training. In this case,
+# the dataset is assumed to be vft.csv. If a different one is needed, set DATASET 
+
+# CAM can be also generated for an arbitrarily selected set of files. In this case,
+# set the DATASET key
+
+DATASET: 'vft_ss6.csv'
+PATH_PREFIX: ''
+IMG_PATH: ''
+OUT_DIR: ''
+Y: 'md'
+DX: False
+LIMIT_N: False
+STRATIFY: False
+
+FOLD_NO: 0
+BATCH_SIZE: 8
+
+
+JOBS: [
+       ['generate_cams','maconh_3heads', 'MAConh', 'test', 'weights/training-sEuTulVWR/best_weights_maconh_3heads'],
+       ['generate_cams','maconh_3heads', 'macONH', 'test', 'weights/training-sEuTulVWR/best_weights_maconh_3heads']
+]
+
+# The followings are for creating the network. Some are related to training
+# and are irrelevant to CAM, but the network creation code needs them
+
+# optimizer, learning rate and algorithm
+# 0: RMSprop 1: Adam  2: Nadam 3: SGD
+ALGO: 2
+LR: 4
+
+# ========== network
+C: 64
+H: 128
+W: 64
+N_FILTER: [32, 32, 32, 32, 32]
+N_CONV: [ 7,  5,  5,  3,  3]
+N_STRIDE: [ 2,  1,  1,  1,  1]
+FC: []
+
+# ========== regularization
+DROPOUT: 0.2
+REG: 0.00
+BN: True    # batch norm
+DECORRELATION: False
+
+# this is irrelevant but needed for compatibility
+OUTSTEM: DEFAULT

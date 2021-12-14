@@ -1,0 +1,47 @@
+# ========== general
+# if running on DLaas, set DEVICE to DLaaS
+# if running on flinders, set DEVICE to a GPU id
+#DEVICE: "3"
+DEVICE: "DLaaS"
+
+# ========== data
+# LIMIT_N: a number or False
+# Y: either VFI or MD
+PATH_PREFIX: ''
+IMG_PATH: '/data/eye/derived/media/nyu_vft_cubes_small/'
+Y: 'md'
+DX: ['POAG']
+ROI: 'mac'
+LIMIT_N: False
+STRATIFY: False
+
+# ========== training
+N_FOLDS: [0,1]
+N_EPOCHS: 80
+BATCH_SIZE: 8
+
+# optimizer, learning rate and algorithm
+# 0: RMSprop 1: Adam  2: Nadam 3: SGD
+ALGO: 2
+LR: 4
+
+# =========== prediction
+PREDICT: True
+WEIGHTS_STEM: 'weights/md_mac/best_weights_solo_mac'
+
+# ========== network
+TYPE: 'solo'
+C: 64
+H: 128
+W: 64
+N_FILTER: [32, 32, 32, 32, 32]
+N_CONV: [ 7,  5,  5,  3,  3]
+N_STRIDE: [ 2,  1,  1,  1,  1]
+
+# ========== regularization
+DROPOUT: 0.2
+REG: 0.00
+BN: True    # batch norm
+
+# ========== output
+OUTSTEM: DEFAULT
